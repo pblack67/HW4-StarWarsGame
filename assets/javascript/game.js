@@ -1,78 +1,101 @@
 $(document).ready(function () {
-    // character collection
-    var characters = [];
 
 
-    // attacking character
-    var attacker = 0;
-
-    // defending character
-    var defender = 0;
-
-    function Character(name, base, current, counter) {
-        this.displayName = name;
-        this.baseAttack = base;
-        this.currentAttack = current;
-        this.counterAttack = counter;
-    }
+    var shadow = $("<div>").attr("id", "shadow");
 
     function reset() {
-        //      Add items from character collection to characters div
-        $("#characters").empty();
-        for (var i = 0; i < characters.length; i++) {
-            var jedi = characters[i];
-            var element = $("<div>");
-            element.text(jedi.displayName);
-            element.addClass("jedi");
-            $("#characters").append(element);
-        }
-
-        //      remove character from player character div
-        $("#playerCharacter").empty();        
-        //      remove any characters from enemies div
-        $("#enemies").empty();
-        //      remove any character from defender div
-        $("#defender").empty();
+        resetCharacters($(shadow));
+        resetCharacters($("#playerCharacter"));
+        resetCharacters($("#enemies"));
+        resetCharacters($("#defender"));
     }
 
-    // on click of reset button
+    function resetCharacters(jqueryObject) {
+        var children = jqueryObject.children();
+        for (var i = 0; i < children.length; i++) {
+            $("#characters").append(children[i]);
+        }
+    }
+ 
+        // on click of a character in characters
+        $(".jedi").on("click", function (event) {
+        console.log("CHARACTER CLICK");
+        console.log("Selected Character:", $(this).text());
+
+        if ("characters" === $(this).parent().attr("id")) {
+            //      move/copy selected jedi to player character
+            $("#playerCharacter").append($(this));
+
+            //      move/copy rest of collection to enemies
+            var children = $("#characters").children();
+            for (var i = 0; i < children.length; i++) {
+                $("#enemies").append(children[i]);
+            }
+        } else if ("enemies" === $(this).parent().attr("id")) {
+            //      move character to defender
+            $("#defender").append($(this));
+        }
+
+    });
+// on click of reset button
     $("#reset").on("click", function (event) {
         console.log("RESET");
         reset();
     });
 
-    // on click of a character in characters
-    $(".jedi").on("click", function (event) {
-        console.log("CHARACTER CLICK");
-        console.log($(this).text());
-    //      move/copy selected object to player character
-        // var attackerDiv = $("#characters").remove(this);
-        // $("#playerCharacter").append(attackerDiv);
-
-    //      move/copy rest of collection to enemies
-    });
-
-
-    // on click of a character in enemies
-    //      move character to defender
-    //      show attack button (or just leave it on the screen all the time)
-
     // on click of attack button
     $("#attack").on("click", function () {
         console.log("ATTACK!");
-    //      mumble if no enemy to attack (or just hide the silly thing)
-    //      attack defender, dealing current attack power damage
-    //      update playerattack message to the result
-    //      if defender's hp's less then or equal to 0, remove defender
-    //      if no more defenders, VICTORY!!! else
-    //          increment current attack power by base attack power
-    //          deal defender's counterattack damage to player
-    //          update defender's counterattack message to reflect the above
-    //          if player's hp's less than or equal to 0, DEFEAT!
-    //      if VICTORY or DEFEAT display reset button
-});
-    characters.push(new Character("Luke Skywalker", 30, 30, 40));
-    characters.push(new Character("Darth Vader", 25, 25, 45));
+
+        //      mumble if no enemy to attack (or just hide the silly thing)
+        // for now, just make sure there's one attacker and one defender
+        if ($("#playerCharacter").children().length === 1 &&
+            $("#defender").children().length === 1) {
+            console.log("Valid attack!");
+            var attacker = $("#playerCharacter").children()[0];
+            var defender = $("#defender").children()[0];
+
+            // deal currentAttack damage to defender
+            var currentAttack = parseInt($(attacker).attr("currentAttack"));
+            var defenderHitPoints = parseInt($(defender).attr("currentHitPoints"));
+            defenderHitPoints -= currentAttack;
+            console.log("Defender has", defenderHitPoints, "remaining");
+            $(defender).attr("currentHitPoints", defenderHitPoints);
+
+            // increment currentAttack by baseAttack
+            var baseAttack = parseInt($(attacker).attr("baseAttack"));
+            currentAttack += baseAttack;
+            console.log("Current Attack is now", currentAttack);
+            $(attacker).attr("currentAttack", currentAttack);
+
+            //      update playerattack message to the result
+
+            //      if defender's hp's less then or equal to 0, remove defender
+            //      if no more defenders, VICTORY!!! else
+            if (defenderHitPoints <= 0) {
+                console.log("One enemy down!");
+                $(shadow).append(defender);
+                // $("#defender").empty();
+            } else {
+                //          deal defender's counterattack damage to player
+                var counterAttack = parseInt($(defender).attr("counterAttack"));
+                var attackerHitPoints = parseInt($(attacker).attr("currentHitPoints"));
+                attackerHitPoints -= counterAttack;
+                $(attacker).attr("currentHitPoints", attackerHitPoints);
+                console.log("Attacker has", attackerHitPoints, "remaining");
+                //          update defender's counterattack message to reflect the above
+                //          if player's hp's less than or equal to 0, DEFEAT!
+                if (attackerHitPoints <= 0) {
+                    console.log("Defeat! Zounds!");
+                }
+            }
+            //      if VICTORY or DEFEAT display reset button
+        }
+    });
+
+    // characters.push(new Character("Luke Skywalker", 30, 30, 40));
+    // characters.push(new Character("Darth Vader", 25, 25, 45));
+    // characters.push(new Character("Obi-Wan Kenobi", 15, 15, 55));
 
     reset();
 });
