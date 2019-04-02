@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Star Wars Game</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -17,30 +16,47 @@
         <div>Characters</div>
         <div id="characters">
             <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=5 currentAttack=5 counterAttack=15>
-                Luke Skywalker</div>
+                <div>Luke Skywalker</div>
+                <img src="" alt="Jedi">
+                <div>100</div>
+            </div>
             <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=7 currentAttack=7 counterAttack=17>
-                Obi-Wan Kenobi</div>
+                <div>Obi-Wan Kenobi</div>
+                <img src="" alt="Jedi">
+                <div>100</div>
+            </div>
             <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=8 currentAttack=8 counterAttack=9>
-                Darth Vader</div>
-            <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=10 currentAttack=9 counterAttack=25>
-                Darth Maul</div>
+                <div>Darth Vader</div>
+                <img src="" alt="Jedi">
+                <div>100</div>
+            </div>
+            <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=10 currentAttack=10 counterAttack=15>
+                <div>Darth Maul</div>
+                <img src="" alt="Jedi">
+                <div>100</div>
+            </div>
         </div>
         <br>
-        <div>Player Character</div>
+        <div class="clearme">Player Character</div>
         <div id="playerCharacter"></div>
         <br>
-        <div>Enemies</div>
+        <div class="clearme">Enemies</div>
         <div id="enemies"></div>
+        <br class="clearme">
         <br>
         <button id="attack">Attack!</button>
-        <div>Defender</div>
+        <br>
+        <br>
+        <div class="clearme">Defender</div>
         <div id="defender"></div>
         <br>
-        <div id="attackerMessage"></div>
+        <div class="clearme" id="attackerMessage"></div>
         <div id="defenderMessage"></div>
         <br>
         <button id="reset">Reset</button>
     </main>
+
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 
 </html>

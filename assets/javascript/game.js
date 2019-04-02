@@ -20,6 +20,7 @@ $(document).ready(function () {
             // reset each character's values back to their initial settings
             $(child).attr("currentHitPoints", $(child).attr("baseHitPoints"));
             $(child).attr("currentAttack", $(child).attr("baseAttack"));
+            updateHitPoints($(child), $(child).attr("baseHitPoints"));
             $("#characters").append(children[i]);
         }
     }
@@ -52,6 +53,10 @@ $(document).ready(function () {
         reset();
     });
 
+    function updateHitPoints(jedi, hitPoints) {
+        $(jedi.children()[2]).text(hitPoints);
+    }
+
     // on click of attack button
     $("#attack").on("click", function () {
         console.log("ATTACK!");
@@ -69,9 +74,11 @@ $(document).ready(function () {
             defenderHitPoints -= currentAttack;
             console.log("Defender has", defenderHitPoints, "remaining");
             $(defender).attr("currentHitPoints", defenderHitPoints);
+            updateHitPoints($(defender), defenderHitPoints);
+            // $($(defender).children()[2]).text(defenderHitPoints);
 
             // update playerattack message to the result
-            $("#attackerMessage").text("You attacked " + $(defender).text() + " for " + currentAttack + " damage");
+            $("#attackerMessage").text("You attacked " + $($(defender).children()[0]).text() + " for " + currentAttack + " damage");
 
             // increment currentAttack by baseAttack
             var baseAttack = parseInt($(attacker).attr("baseAttack"));
@@ -84,7 +91,7 @@ $(document).ready(function () {
             //      if no more defenders, VICTORY!!! else
             if (defenderHitPoints <= 0) {
                 console.log("One enemy down!");
-                $("#attackerMessage").text("You defeated " + $(defender).text() + ". Choose another enemy to attack.");
+                $("#attackerMessage").text("You defeated " + $($(defender).children()[0]).text() + ". Choose another enemy to attack.");
                 $("#defenderMessage").text("");
                 $(shadow).append(defender);
 
@@ -103,9 +110,10 @@ $(document).ready(function () {
                 attackerHitPoints -= counterAttack;
                 $(attacker).attr("currentHitPoints", attackerHitPoints);
                 console.log("Attacker has", attackerHitPoints, "remaining");
+                updateHitPoints($(attacker), attackerHitPoints);
 
                 //          update defender's counterattack message to reflect the above
-                $("#defenderMessage").text($(defender).text() + " attacked you for " + counterAttack + " damage");
+                $("#defenderMessage").text($($(defender).children()[0]).text() + " attacked you for " + counterAttack + " damage");
 
                 //          if player's hp's less than or equal to 0, DEFEAT!
                 if (attackerHitPoints <= 0) {
