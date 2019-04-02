@@ -13,42 +13,47 @@
 
 <body>
     <main>
-        <div>Characters</div>
-        <div id="characters">
-            <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=5 currentAttack=5 counterAttack=15>
-                <div>Luke Skywalker</div>
-                <img src="" alt="Jedi">
-                <div>100</div>
-            </div>
-            <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=7 currentAttack=7 counterAttack=17>
-                <div>Obi-Wan Kenobi</div>
-                <img src="" alt="Jedi">
-                <div>100</div>
-            </div>
-            <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=8 currentAttack=8 counterAttack=9>
-                <div>Darth Vader</div>
-                <img src="" alt="Jedi">
-                <div>100</div>
-            </div>
-            <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=10 currentAttack=10 counterAttack=15>
-                <div>Darth Maul</div>
-                <img src="" alt="Jedi">
-                <div>100</div>
+        <div class="title">
+            Star Wars RPG
+        </div>
+        <div class="floatright">
+            <h3>Characters</h3>
+            <div id="characters" class="characterHolder">
+                <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=5 currentAttack=5 counterAttack=15>
+                    <div class="centerme">Luke Skywalker</div>
+                    <img src="assets/images/luke-skywalker.jpeg" alt="Jedi">
+                    <div class="centerme">100</div>
+                </div>
+                <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=7 currentAttack=7 counterAttack=17>
+                    <div class="centerme">Obi-Wan Kenobi</div>
+                    <img src="assets/images/Obi-Wan-Kenobi.jpeg" alt="Jedi">
+                    <div class="centerme">100</div>
+                </div>
+                <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=8 currentAttack=8 counterAttack=9>
+                    <div class="centerme">Darth Vader</div>
+                    <img src="assets/images/Darth-Vader.jpeg" alt="Jedi">
+                    <div class="centerme">100</div>
+                </div>
+                <div class="jedi" baseHitPoints=100 currentHitPoints=100 baseAttack=10 currentAttack=10
+                    counterAttack=15>
+                    <div class="centerme">Darth Maul</div>
+                    <img src="assets/images/Darth-Maul.jpeg" alt="Jedi">
+                    <div class="centerme">100</div>
+                </div>
             </div>
         </div>
+        <h3 class="clearme">Player Character</h3>
+        <div id="playerCharacter" class="characterHolder"></div>
         <br>
-        <div class="clearme">Player Character</div>
-        <div id="playerCharacter"></div>
-        <br>
-        <div class="clearme">Enemies</div>
-        <div id="enemies"></div>
+        <h3 class="clearme">Enemies</h3>
+        <div id="enemies" class="characterHolder"></div>
         <br class="clearme">
         <br>
         <button id="attack">Attack!</button>
         <br>
         <br>
-        <div class="clearme">Defender</div>
-        <div id="defender"></div>
+        <h3 class="clearme">Defender</h3>
+        <div id="defender" class="characterHolder"></div>
         <br>
         <div class="clearme" id="attackerMessage"></div>
         <div id="defenderMessage"></div>

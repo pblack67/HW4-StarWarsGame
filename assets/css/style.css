@@ -1,9 +1,51 @@
+* {
+    color:white;
+}
+
+body {
+    background-image: url("../images/Star-Wars-Background-Sith.jpg");
+    background-size: cover;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin: 5px 5px 10px 5px;
+}
+
+button {
+    margin: 5px;
+    background-color: red;
+}
+
+img {
+    width: 150px;
+}
+
 .jedi {
-    border: 1px solid black;
+    border: 1px solid white;
     margin: 3px;
     float: left;
+    color: white;
+    background-color: black;
+}
+
+.characterHolder {
+    height: 120px;
 }
 
 .clearme {
     clear: left;
+}
+
+.centerme {
+    text-align: center;
+}
+
+.floatright {
+    float: right;
+}
+
+.title {
+    text-align:center;
+    font-size: 3em;
 }
