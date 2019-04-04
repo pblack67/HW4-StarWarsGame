@@ -1,7 +1,7 @@
 var shadow = $("<div>").attr("id", "shadow");
 
 function updateHitPoints(jedi, hitPoints) {
-    jedi.find('[class~="hitPoints"]').text(hitPoints);
+    jedi.find('[class~="hitPoints"]').text(hitPoints + " HP");
 }
 
 function reset() {
