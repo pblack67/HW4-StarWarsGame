@@ -1,7 +1,7 @@
 var shadow = $("<div>").attr("id", "shadow");
 
 function updateHitPoints(jedi, hitPoints) {
-    $(jedi.children()[2]).text(hitPoints);
+    jedi.find('[class~="hitPoints"]').text(hitPoints);
 }
 
 function reset() {
@@ -63,7 +63,7 @@ function attack(attacker, defender, attackAttributeName, isRegularAttack) {
     updateHitPoints(defender, defenderHitPoints);
 
     if (isRegularAttack) {
-        var defenderName = $(defender.children()[0]).text();
+        var defenderName = defender.find('[class~="jediname"]').text();
         $("#attackerMessage").text("You attacked " + defenderName + " for " + currentAttack + " damage");
         // increment currentAttack by baseAttack
         var baseAttack = parseInt(attacker.attr("baseAttack"));
@@ -72,7 +72,7 @@ function attack(attacker, defender, attackAttributeName, isRegularAttack) {
         attacker.attr("currentAttack", currentAttack);
     } else {
         // Must be a counterattack
-        var attackerName = $(attacker.children()[0]).text();
+        var attackerName = attacker.find('[class~="jediname"]').text();
         $("#defenderMessage").text(attackerName + " attacked you for " + currentAttack + " damage");
     }
     return defenderHitPoints;
@@ -105,7 +105,7 @@ function processAttackClick(event) {
                     setMessages("You defeated all the enemies! Well done! GAME OVER...", "", true);
                 } else {
                     console.log("One enemy down!");
-                    setMessages("You defeated " + $(defender.children()[0]).text() + ". Choose another enemy to attack.", "", false);
+                    setMessages("You defeated " + defender.find('[class~="jediname"]').text() + ". Choose another enemy to attack.", "", false);
                 }
             } else {
                 //          deal defender's counterattack damage to player
