@@ -10,4 +10,4 @@ This game simulates basic combat between characteres in a role-playing game. It'
 
 ## Architecture
 
-The main program flow is in the game.js file. Application flow is driven by mouse click events on the character graphics and the attack button. Event handlers are attached via jQuery. Clicking on a character either moves it to the player character area or the defender area based on where the character graphic is. The attack button processes the attack logic and notifies the user whether their attack was successful or they ran out of hit points and lost. If the defender is defeated then it's moved to a shadow div so the application doesn't lose track of it. 
+The main program flow is in the game.js file. Application flow is driven by mouse click events on the character graphics and the question timer. If the player answers before time is up then the right/wrong logic kicks in. If the player doesn't answer, well, there's taunting. The questions are stored in object so the quiz is easily configurable. The number of answers can be variable as well although this application uses four answers for each question.
