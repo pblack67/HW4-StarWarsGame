@@ -2,6 +2,8 @@
 
 * URL: [https://pblack67.github.io/StarWarsGame/](https://pblack67.github.io/StarWarsGame/)
 
+![Star Wars](images/starwars.png)
+
 * Technologies: HTML, CSS, JavaScript, Events, jQuery
 
 ## Overview
